@@ -1,0 +1,29 @@
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    
+    .page-item {
+      margin: 0 5px;
+      
+      .page-link {
+        display: block;
+        padding: 8px 12px;
+        color: $secondary-color;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        
+        &:hover {
+          background-color: $primary-color;
+          color: #fff;
+        }
+        
+        &.active {
+          background-color: $primary-color;
+          color: #fff;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }

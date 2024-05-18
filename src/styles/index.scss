@@ -1,10 +1,13 @@
 @import './reset';
-
-$primary-color: #42b983;
+@import './vendor/variables';
+@import './vendor/buttons';
+@import './vendor/inputs';
+@import './vendor/pagination';
+@import './vendor/table';
+@import './vendor/typography';
 
 body {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  background-color: $primary-color;
-  margin: 0;
-  padding: 0;
+    background-color: white;
+    margin: 0;
+    padding: 0;
 }
