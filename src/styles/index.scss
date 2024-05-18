@@ -5,9 +5,14 @@
 @import './vendor/pagination';
 @import './vendor/table';
 @import './vendor/typography';
+@import './vendor/checkbox';
 
+* {
+    box-sizing: border-box;
+}
 body {
     background-color: white;
     margin: 0;
     padding: 0;
+
 }
