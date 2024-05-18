@@ -1,8 +1,15 @@
 <script>
 import { Checkbox } from '@/components/atoms';
+import { Input } from '@/components/atoms';
+import { LabelField } from "@/components/molecule";
+import { BaseInput } from "@/components/atoms";
+
 export default {
   components: {
     Checkbox,
+    LabelField,
+    Input,
+    BaseInput
   },
   data() {
     return {
@@ -23,6 +30,42 @@ export default {
       <div class="checkbox-column">Interminate Disable: <Checkbox v-model="isChecked" intermediate :disabled="true" /></div>
       <div class="checkbox-column">Disable: <Checkbox v-model="isChecked" :disabled="true" /></div>
     </div>
+    <div class="form">
+      <div class="input-container">
+                <div class="input-column">Default Small:<BaseInput elementType="textarea" type="text" size="lg" rows="4" cols="50" placeholder="Placeholder"/></div>
+
+        <div class="input-column">Default Small:<BaseInput elementType="input" type="text" size="sm" placeholder="Placeholder"/></div>
+        <div class="input-column">Default Big: <BaseInput type="text" size="lg" /></div>
+        <div class="input-column">Error: <BaseInput type="email" size="lg" value="Value" error/></div>
+        <div class="input-column">Disable: <BaseInput type="text" size="lg" disabled value="Value"/></div>
+      </div>
+      <div class="form-label">
+        <LabelField
+          id="outlined-error-helper-text"
+          label="Enter your name"
+          defaultValue="Hello World"
+          helperText="Incorrect entry."
+          alertMessage="Error: Incorrect entry."
+          type="text"
+          size="lg"
+        />
+      <LabelField
+        id="outlined-disabled-helper-text"
+        label="Disabled field"
+        defaultValue="Hello World"
+        disabled
+        type="text"
+        size="lg"
+      />
+      <LabelField
+        id="outlined-required"
+        label="Required field"
+        required
+        type="text"
+        size="lg"
+      />
+      </div>
+    </div>
   </div>
 
 </template>
@@ -41,5 +84,25 @@ export default {
     display: flex;
     align-items: center;
     column-gap: 10px;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.input-column {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form {
+  display: flex;
+  column-gap: 50px;
+}
+.form-label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
 </style>
