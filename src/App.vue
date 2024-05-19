@@ -3,13 +3,17 @@ import { Checkbox } from '@/components/atoms';
 import { Input } from '@/components/atoms';
 import { LabelField } from "@/components/molecule";
 import { BaseInput } from "@/components/atoms";
+import { IconToggleMenu } from '@/components/atoms';
+import { ToggleMenu } from '@/components/atoms';
 
 export default {
   components: {
     Checkbox,
     LabelField,
     Input,
-    BaseInput
+    BaseInput,
+    ToggleMenu,
+    IconToggleMenu
   },
   data() {
     return {
@@ -66,6 +70,25 @@ export default {
       />
       </div>
     </div>
+    <div class="toggle-menu">
+      <IconToggleMenu :icons="['/path/to/icon1.svg', '/path/to/icon2.svg']">
+        <template #content-0>
+          <p>Content for icon 1</p>
+        </template>
+        <template #content-1>
+          <p>Content for icon 2</p>
+        </template>
+      </IconToggleMenu>
+
+      <ToggleMenu :labels="['By category', 'All products']">
+        <template #content-0>
+          <p>Content for option 1</p>
+        </template>
+        <template #content-1>
+          <p>Content for option 2</p>
+        </template>
+      </ToggleMenu>
+    </div>
   </div>
 
 </template>
@@ -104,5 +127,11 @@ export default {
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+}
+.toggle-menu {
+  border: 1px dotted;
+  padding: 10px 30px;
+  margin-block: 30px;
+  width: 400px;
 }
 </style>
