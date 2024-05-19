@@ -5,6 +5,9 @@ import { LabelField } from "@/components/molecule";
 import { BaseInput } from "@/components/atoms";
 import { IconToggleMenu } from '@/components/atoms';
 import { ToggleMenu } from '@/components/atoms';
+import { Dropdown } from '@/components/atoms';
+import { MultiselectDropdown } from '@/components/molecule';
+import { DropdownWithLabel } from '@/components/molecule';
 
 export default {
   components: {
@@ -13,11 +16,18 @@ export default {
     Input,
     BaseInput,
     ToggleMenu,
-    IconToggleMenu
+    IconToggleMenu,
+    Dropdown,
+    MultiselectDropdown,
+    DropdownWithLabel
   },
   data() {
     return {
       isChecked: false,
+      dropdownOptions: ['Option 1', 'Option 2', 'Option 3'],
+      selectedOption: null,
+      multiselectOptions: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+      selectedOptions: []
     };
   },
 };
@@ -89,6 +99,64 @@ export default {
         </template>
       </ToggleMenu>
     </div>
+    <!-- <div>
+      <h1>Select an Option</h1>
+      <Dropdown 
+        :options="dropdownOptions" 
+        placeholder="Select an option" 
+        v-model="selectedOption"
+      />
+      <p>Selected Option: {{ selectedOption }}</p>
+    </div>
+    <div>
+      <h1>Select an Option</h1>
+      <DropdownWithLabel 
+        label="label"
+        :options="dropdownOptions" 
+        placeholder="Select an option" 
+        v-model="selectedOption"
+      />
+      <p>Selected Option: {{ selectedOption }}</p>
+    </div>
+     <div>
+        <h1>Select an Option</h1>
+        <Dropdown 
+          :options="dropdownOptions" 
+          placeholder="Select an option" 
+          v-model="selectedOption"
+        >
+          <template #default="{ option, index }">
+            <div :key="index" class="custom-option">
+              {{ option }}
+            </div>
+          </template>
+        </Dropdown>
+        <p>Selected Option: {{ selectedOption }}</p>
+      </div> -->
+      <div>
+    <DropdownWithLabel
+      id="myDropdown"
+      label="Select an option"
+      :options="dropdownOptions"
+      placeholder="Select..."
+      v-model="selectedOption"
+    />
+    <p>Selected Option: {{ selectedOption }}</p>
+  </div>
+       <div>
+          <h1>Select Multiple Options</h1>
+          <MultiselectDropdown 
+            :options="multiselectOptions" 
+            placeholder="Select options" 
+            v-model="selectedOptions"
+          />
+          <div>
+            <p>Selected Options:</p>
+            <ul>
+              <li v-for="option in selectedOptions" :key="option">{{ option }}</li>
+            </ul>
+          </div>
+        </div>
   </div>
 
 </template>
