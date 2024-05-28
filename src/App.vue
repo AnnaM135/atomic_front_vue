@@ -8,6 +8,7 @@ import { ToggleMenu } from '@/components/atoms';
 import { Dropdown } from '@/components/atoms';
 import { MultiselectDropdown } from '@/components/molecule';
 import { DropdownWithLabel } from '@/components/molecule';
+import Pagination from "./components/molecule/Pagination.vue";
 
 export default {
   components: {
@@ -19,7 +20,8 @@ export default {
     IconToggleMenu,
     Dropdown,
     MultiselectDropdown,
-    DropdownWithLabel
+    DropdownWithLabel,
+    Pagination
   },
   data() {
     return {
@@ -27,15 +29,46 @@ export default {
       dropdownOptions: ['Option 1', 'Option 2', 'Option 3'],
       selectedOption: null,
       multiselectOptions: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
-      selectedOptions: []
+      selectedOptions: [],
+      currentPage: 1,
+      pageSize: 10, 
+      dataArray: ["a", "b", "c", "d", "a", "b", "c", "d", "a", "b", "c", "d", "a", "b", "c", "d", "a", "b", "c", "d", "a", "b", "c", "d"],
     };
   },
+  computed: {
+    totalPages() {
+      if(this.pageSize === "") return 10;
+      return Math.ceil(this.dataArray.length / this.pageSize);
+    },
+    totalEntries() {
+      return this.dataArray.length;
+    },
+    paginatedData() {
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = start + this.pageSize;
+      return this.dataArray.slice(start, end);
+    },
+  },
+  methods: {
+    setCurrentPage(page) {
+      this.currentPage = page;
+    },
+  }
 };
 </script>
 
 <template>
   <div>
     <h1>Atomic Frontend</h1>
+    Show: <input type="text" v-model="pageSize">
+    <Pagination
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @update:currentPage="setCurrentPage"
+
+      :totalEntries="totalEntries"
+      :entriesPerPage="pageSize"
+    />
     <button class="button">button</button>
     <div class="checkbox-container">
       <div class="checkbox-column">Default: <Checkbox v-model="isChecked" /></div>
